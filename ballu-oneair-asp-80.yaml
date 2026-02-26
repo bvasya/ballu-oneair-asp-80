@@ -512,7 +512,7 @@ fan:
           then:
             output.set_level:
               id: heating_gpio
-              level: !lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
+              level: lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
     on_turn_on:
       - if:
           condition:
@@ -563,7 +563,7 @@ number:
           then:
             output.set_level:
               id: heating_gpio
-              level: !lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
+              level: lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
       - lambda: 'global_preferences->sync();'
 
 switch:
@@ -587,7 +587,7 @@ switch:
                   script.execute: led_check
             - output.set_level:
                 id: heating_gpio
-                level: !lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
+                level: lambda "return (id(target_power).state * (id(fan_output).speed / 100.0)) / 100.0;"
           else:
             - script.execute: play_beep_error
             - switch.template.publish:
